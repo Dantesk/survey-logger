@@ -1,6 +1,5 @@
-const { app, BrowserWindow, dialog, Menu, protocol, ipcMain } = require('electron');
+const { app, BrowserWindow, autoUpdater, dialog, Menu, protocol, ipcMain } = require('electron');
 const log = require('electron-log');
-const { autoUpdater } = require("electron-updater");
 
 //-------------------------------------------------------------------
 // Logging
@@ -37,32 +36,32 @@ function createWindow() {
     // win.removeMenu(null); // Rimuove il menu forse
 }
 
-function sendStatusToWindow(text) {
-    log.info(text);
-    win.webContents.send('message', text);
-}
+// function sendStatusToWindow(text) {
+//     log.info(text);
+//     win.webContents.send('message', text);
+// }
 
-autoUpdater.on('checking-for-update', () => {
-    sendStatusToWindow('Checking for update...');
-  })
-  autoUpdater.on('update-available', (info) => {
-    sendStatusToWindow('Update available.');
-  })
-  autoUpdater.on('update-not-available', (info) => {
-    sendStatusToWindow('Update not available.');
-  })
-  autoUpdater.on('error', (err) => {
-    sendStatusToWindow('Error in auto-updater. ' + err);
-  })
-  autoUpdater.on('download-progress', (progressObj) => {
-    let log_message = "Download speed: " + progressObj.bytesPerSecond;
-    log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
-    log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-    sendStatusToWindow(log_message);
-  })
-  autoUpdater.on('update-downloaded', (info) => {
-    sendStatusToWindow('Update downloaded');
-  });
+// autoUpdater.on('checking-for-update', () => {
+//     sendStatusToWindow('Checking for update...');
+//   })
+//   autoUpdater.on('update-available', (info) => {
+//     sendStatusToWindow('Update available.');
+//   })
+//   autoUpdater.on('update-not-available', (info) => {
+//     sendStatusToWindow('Update not available.');
+//   })
+//   autoUpdater.on('error', (err) => {
+//     sendStatusToWindow('Error in auto-updater. ' + err);
+//   })
+//   autoUpdater.on('download-progress', (progressObj) => {
+//     let log_message = "Download speed: " + progressObj.bytesPerSecond;
+//     log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+//     log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+//     sendStatusToWindow(log_message);
+//   })
+//   autoUpdater.on('update-downloaded', (info) => {
+//     sendStatusToWindow('Update downloaded');
+//   });
 
 app.whenReady().then(createWindow)
 
@@ -99,15 +98,19 @@ app.on('activate', () => {
 // })
 // autoUpdater.on('download-progress', (ev, progressObj) => {
 // })
-autoUpdater.on('update-downloaded', (ev, info) => {
-    // Wait 5 seconds, then quit and install
-    // In your application, you don't need to wait 5 seconds.
-    // You could call autoUpdater.quitAndInstall(); immediately
-    setTimeout(function () {
-        autoUpdater.quitAndInstall();
-    }, 5000)
-})
 
+// Listen for the update-downloaded event
+autoUpdater.on('update-downloaded', (ev, info) => {
+  // Wait 5 seconds, then quit and install
+  // In your application, you don't need to wait 5 seconds.
+  // You could call autoUpdater.quitAndInstall(); immediately
+  setTimeout(function () {
+    autoUpdater.quitAndInstall();
+  }, 5000)
+});
+
+// Check for updates when the app is ready
 app.on('ready', function () {
-    autoUpdater.checkForUpdates();
+  console.log('CheckForUpdates')
+  autoUpdater.checkForUpdates();
 });

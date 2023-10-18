@@ -49,6 +49,7 @@
   "devDependencies": {
     "@electron-forge/cli": "^6.4.2",
     "@electron-forge/maker-deb": "^6.4.2",
+    "@electron-forge/maker-dmg": "^6.4.2",
     "@electron-forge/maker-rpm": "^6.4.2",
     "@electron-forge/maker-squirrel": "^6.4.2",
     "@electron-forge/maker-zip": "^6.4.2",
@@ -60,6 +61,7 @@
     "electron-log": "^4.4.8",
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^6.1.4",
-    "exceljs": "^4.3.0"
+    "exceljs": "^4.3.0",
+    "update-electron-app": "^2.0.1"
   }
 }

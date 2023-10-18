@@ -1,3 +1,5 @@
+const githubToken = process.env.GITHUB_TOKEN;
+
 module.exports = {
   packagerConfig: {
     asar: true,
@@ -11,6 +13,13 @@ module.exports = {
         "iconUrl": "./icon.ico"
       }
     },
+    // {
+    //   name: '@electron-forge/maker-dmg',
+    //   config: {
+    //     "iconUrl": "./icon.icns"
+    //   },
+    //   platforms: ['darwin'],
+    // },
     {
       name: '@electron-forge/maker-zip',
       config: {
@@ -42,7 +51,8 @@ module.exports = {
           name: 'survey-logger'
         },
         prerelease: false,
-        draft: true
+        draft: true,
+        authToken: githubToken,
       }
     }
   ]
