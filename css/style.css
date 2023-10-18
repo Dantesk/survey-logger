@@ -1,0 +1,67 @@
+.flex-50 {
+    flex: 50%;
+}
+
+.flex-100 {
+    flex: 100%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* SOL Button */
+.btn-sol {
+    background-color: #a3e69d;
+}
+.btn-sol:hover {
+    background-color: #6bc987;
+  }
+
+/* EOL Button */
+.btn-eol {
+    background-color: #FFC0CB;
+}
+.btn-eol:hover {
+    background-color: #FFAEB9;
+}
+
+/* Pole action button */
+.btn-pole-action {
+    background-color: #CBAED7;
+}
+
+.btn-pole-action:hover {
+    background-color: #a98cc7;
+}
+
+.btn-outline-pole {
+    border-color: #CBAED7;
+}
+
+
+/* Object action button */
+.btn-object-action {
+    background-color: #A5D9FD;
+}
+
+.btn-object-action:hover {
+    background-color: #7bb7f5;
+}
+
+.btn-outline-object {
+    border-color: #A5D9FD;
+}
+
+/* SVP action button */
+.btn-svp-action {
+    background-color: #dfe499;
+}
+
+.btn-svp-action:hover {
+    background-color: #c5d86d;
+}
+
+.btn-outline-svp {
+    border-color: #A5D9FD;
+}

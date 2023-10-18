@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Survey Logger (beta)</title>
+    <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="">
+    <meta name="author" content="Paolo Lagalante">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/client.css">
+    <link rel="stylesheet" href="css/server.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- <div class="mt-2 mb-2 ms-2 me-2 alert alert-primary" id="alert" role="alert"><span id="version">vX.Y.Z</span></div> -->
+    <div class="container-fluid">
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="d-flex mb-2">
+                    <div class="flex-50">
+                        <h5>UDP Clients</h5>
+                    </div>
+                    <div class="flex-50 text-end">
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#client-modal">Add</button>
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#generator-modal">Generate Data</button>
+                    </div>
+                </div>
+                <div id="clients"></div>
+            </div>
+            <div class="col-12">
+                <div class="d-flex mb-2">
+                    <div class="flex-50">
+                        <h5>Survey Logger <span class="badge rounded-pill bg-primary">BETA</span></h5>
+                    </div>
+                    <div class="flex-50 text-end">
+                        <button type="button" class="btn rounded-pill btn-sm btn-outline-success" data-bs-toggle="modal"
+                            data-bs-target="#server-modal">Add Server</button>
+                    </div>
+                </div>
+                <div id="servers"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" data-backdrop="static" id="generator-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Random Data Generator</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="generator">
+                        <div class="d-grid gap-2 mb-2">
+                            <textarea name="random" class="form-control"
+                                placeholder="Press the Generate Button"></textarea>
+                            <input name="length" type="number" class="form-control" value="128">
+                            <button type="button" name="generate" class="btn btn-sm btn-primary">Generate</button>
+                            <button type="button" name="copy" class="btn btn-sm btn-primary">Copy to Clipboard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" data-backdrop="static" id="client-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add UDP Client</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="client-form">
+                        <div class="mb-3">
+                            <label class="form-label">Local IP Address</label>
+                            <input type="string" name="local.address" class="form-control" value="0.0.0.0">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Local Port</label>
+                            <input type="number" name="local.port" class="form-control" min="0" max="65535"
+                                value="6570">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Remote IP Address</label>
+                            <input type="string" name="remote.address" class="form-control" value="0.0.0.0">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Remote Port</label>
+                            <input type="number" name="remote.port" class="form-control" min="0" max="65535"
+                                value="6570">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" data-backdrop="static" id="server-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add UDP Server</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="server-form">
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" name="file.path" id="file.path">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Local IP Address</label>
+                            <input type="string" name="local.address" class="form-control" value="0.0.0.0">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Local Port</label>
+                            <input type="number" name="local.port" class="form-control" min="0" max="65535"
+                                value="6570">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template id="client-template">
+        <div class="client card mb-2">
+            <strong class="card-header">
+                <div class="mb-2 d-flex">
+                    <div class="flex-50">
+                        <strong>Client</strong>
+                        <span>-</span>
+                        <span data-name="id"></span>
+                    </div>
+                    <div class="flex-50 text-end">
+                        <button type="button" name="delete" class="btn btn-sm btn-danger">Delete</button>
+                    </div>
+                </div>
+            </strong>
+            <div class="card-body">
+                <div class="card mb-2">
+                    <strong class="card-header">Send Message</strong>
+                    <div class="card-body">
+                        <div class="d-grid gap-2 mb-2">
+                            <textarea name="message" class="form-control" placeholder="Enter Data"></textarea>
+                            <div class="input-group">
+                                <span class="input-group-text">Encoding</span>
+                                <select class="form-select" name="encoding">
+                                    <option value="ascii">ASCII String</option>
+                                    <option value="hex">Hex</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">Interval in ms</span>
+                                <input type="number" name="repeat" class="form-control" min="0">
+                                <label class="input-group-text">Enable</label>
+                                <div class="input-group-text">
+                                    <input class="form-check-input" type="checkbox" name="repeat.enable">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">Datagram Loss %</span>
+                                <input type="number" name="dataloss" class="form-control" min="0" max="100">
+                                <label class="input-group-text">Enable</label>
+                                <div class="input-group-text">
+                                    <input class="form-check-input" type="checkbox" name="dataloss.enable">
+                                </div>
+                            </div>
+                            <button type="button" name="send" class="btn btn-sm btn-success">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="server-template">
+        <div class="server card mb-2">
+            <strong class="card-header">
+                <div class="mb-2 d-flex">
+                    <div class="flex-50">
+                        <strong>Server</strong>
+                        <span>-</span>
+                        <span data-name="id"></span>
+                    </div>
+                    <div class="flex-50 text-end">
+                        <button type="button" name="delete" class="btn btn-sm btn-danger">Delete</button>
+                    </div>
+                </div>
+            </strong>
+            <div class="card-body">
+                <div class="mb-2">
+                    <strong>Messages:</strong>
+                    <pre data-name="messages" class=""></pre>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                    <button type="button" name="clear" class="btn btn-sm btn-warning">Clear View Message</button>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" name="sol" class="btn btn-sol">SOL</button>
+                        <button type="button" name="eol" class="btn btn-eol">EOL</button>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                    <div class="input-group input-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" name="inWater" class="btn btn-object-action">Object In Water</button>
+                        <button type="button" name="offWater" class="btn btn-object-action">Object Off Water</button>
+                        <select class="btn-outline-pole form-select" id="water-instrument" name="water-instrument"
+                            aria-label="Select position...">
+                            <option selected>Choose instrument...</option>
+                            <option value="SSS">SIDESCAN</option>
+                            <option value="SPK">SPARKER</option>
+                            <option value="ROV">ROV</option>
+                            <option value="SAPLER">SAPLER</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                    <div class="input-group input-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" name="onDeck" class="btn btn-object-action">Object On-deck</button>
+                        <button type="button" name="offDeck" class="btn btn-object-action">Object Off-deck</button>
+                        <select class="btn-outline-pole form-select" id="deck-instrument" name="deck-instrument"
+                            aria-label="Select position...">
+                            <option selected>Choose instrument...</option>
+                            <option value="SSS">SIDESCAN</option>
+                            <option value="SPK">SPARKER</option>
+                            <option value="ROV">ROV</option>
+                            <option value="SAPLER">SAPLER</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" name="svpPerformed" class="btn btn-svp-action">SVP PERFORMED</button>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                    <div class="input-group input-group-sm">
+                        <button name="poleUp" class="btn btn-pole-action" type="button">Pole UP</button>
+                        <button name="poleDown" class="btn btn-pole-action" type="button">Pole DOWN</button>
+                        <select class="btn-outline-pole form-select" id="poleChoose" name="poleChoose"
+                            aria-label="Select position...">
+                            <option selected>Choose position...</option>
+                            <option value="Starboard">Starboard</option>
+                            <option value="Port">Port</option>
+                            <option value="Moonpool">Moonpool</option>
+                        </select>
+                        <select class="btn-outline-pole form-select" id="poleChooseInstrument" name="pole-instrument"
+                            aria-label="Select position...">
+                            <option selected>Choose instrument...</option>
+                            <option value="SBP">SBP</option>
+                            <option value="MBES">MBES</option>
+                            <option value="USBL">USBL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Event and comment</span>
+                        <input type="text" name="event" id="event" aria-label="event" class="form-control">
+                        <input type="text" name="comment" id="comment" aria-label="comment" class="form-control">
+                        <button class="btn btn-outline-secondary" type="button" name="writeGeneric"
+                            id="writeGeneric">WRITE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script src="vendor/bootstrap.bundle.min.js"></script>
+    <!-- <script>
+        // Display the current version
+        let version = window.location.hash.substring(1);
+        document.getElementById('version').innerText = version;
+
+        // Listen for messages
+        const { ipcRenderer } = require('electron');
+        ipcRenderer.on('message', function (event, text) {
+            var container = document.getElementById('alert');
+            var message = document.createElement('div');
+            message.innerHTML = text;
+            container.appendChild(message);
+        })
+    </script> -->
+    <script src="js/node.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/socket.js"></script>
+    <script src="js/clientElement.js"></script>
+    <script src="js/client.js"></script>
+    <script src="js/clientManager.js"></script>
+    <script src="js/serverElement.js"></script>
+    <script src="js/server.js"></script>
+    <script src="js/serverManager.js"></script>
+    <script src="js/app.js"></script>
+    <script>const app = new App();</script>
+</body>
+
+</html>

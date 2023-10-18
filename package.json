@@ -1,0 +1,64 @@
+{
+  "name": "survey_logger",
+  "version": "1.0.3",
+  "description": "A simple electron app to create UDP servers to receive datagrams from Qisey",
+  "main": "index.js",
+  "scripts": {
+    "pack": "electron-packager . --overwrite --icon=./icon",
+    "build": "electron-forge make",
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "build": {
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://127.0.0.1:8080/"
+      }
+    ],
+    "appId": "com.github.dantesk.survey_logger",
+    "mac": {
+      "category": "your.app.category.type",
+      "target": [
+        "zip",
+        "dmg"
+      ]
+    },
+    "nsis": {
+      "perMachine": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+path"
+  },
+  "keywords": [
+    "udp",
+    "server",
+    "client",
+    "electron"
+  ],
+  "author": "Paolo Lagalante",
+  "license": "MIT",
+  "bugs": {
+    "url": "path"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-deb": "^6.4.2",
+    "@electron-forge/maker-rpm": "^6.4.2",
+    "@electron-forge/maker-squirrel": "^6.4.2",
+    "@electron-forge/maker-zip": "^6.4.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
+    "electron": "^11.0.4"
+  },
+  "dependencies": {
+    "electron-log": "^4.4.8",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^6.1.4",
+    "exceljs": "^4.3.0"
+  }
+}
