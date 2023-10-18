@@ -33,4 +33,17 @@ module.exports = {
       config: {},
     },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'Dantesk',
+          name: 'survey-logger'
+        },
+        prerelease: false,
+        draft: true
+      }
+    }
+  ]
 };
