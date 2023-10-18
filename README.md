@@ -1,8 +1,8 @@
 # Survey Logger
-A simple app to create UDP servers receive datagrams from client qinsy.
+A simple app to create UDP servers receive datagrams from client qinsy and save them on xlms file.
 
 ## Adding a Server
-![Adding a Server](docs/server.png)
+Press on Add Server button to open modal. Select your excel file, set IP Address and Port and click Submit button.
 
 ## Development
 Run `npm install`. During development, you can use `npm start` to start the electron application. 
