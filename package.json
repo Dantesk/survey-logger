@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+path"
+    "url": "git+https://github.com/Dantesk/survey-logger.git"
   },
   "keywords": [
     "udp",
@@ -44,7 +44,7 @@
   "author": "Paolo Lagalante",
   "license": "LGPL-3.0-only",
   "bugs": {
-    "url": "path"
+    "url": "https://github.com/Dantesk/survey-logger/issues"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.2",
