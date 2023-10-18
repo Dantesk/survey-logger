@@ -1,4 +1,4 @@
-const githubToken = process.env.GITHUB_TOKEN;
+require('dotenv').config();
 
 module.exports = {
   packagerConfig: {
@@ -50,9 +50,9 @@ module.exports = {
           owner: 'Dantesk',
           name: 'survey-logger'
         },
-        prerelease: false,
+        prerelease: true,
         draft: true,
-        authToken: githubToken,
+        authToken: process.env.GITHUB_TOKEN,
       }
     }
   ]
