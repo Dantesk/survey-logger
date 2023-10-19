@@ -136,38 +136,38 @@ class ServerElement extends HTMLElement {
         });
 
         // On click emit an event to write offWater to xlsx
-        this.offWater.addEventListener('click', (event) => {
-            this.appendMessageToXlsxOffWater(this.messages.innerHTML);
+        this.offWater.addEventListener('click', async (event) => {
+            await this.appendMessageToXlsxOffWater(this.messages.innerHTML);
         });
 
         // On click emit an event to write onDeck to xlsx
-        this.onDeck.addEventListener('click', (event) => {
-            this.appendMessageToXlsxOnDeck(this.messages.innerHTML);
+        this.onDeck.addEventListener('click', async (event) => {
+            await this.appendMessageToXlsxOnDeck(this.messages.innerHTML);
         });
 
         // On click emit an event to write offDeck to xlsx
-        this.offDeck.addEventListener('click', (event) => {
-            this.appendMessageToXlsxOffDeck(this.messages.innerHTML);
+        this.offDeck.addEventListener('click', async (event) => {
+            await this.appendMessageToXlsxOffDeck(this.messages.innerHTML);
         });
 
         // On click emit an event to write svpPerformed to xlsx
-        this.svpPerformed.addEventListener('click', (event) => {
-            this.appendMessageToXlsxSvpPerformed(this.messages.innerHTML);
+        this.svpPerformed.addEventListener('click', async (event) => {
+            await this.appendMessageToXlsxSvpPerformed(this.messages.innerHTML);
         });
 
         // On click emit an event to write poleUp to xlsx
-        this.poleUp.addEventListener('click', (event) => {
-            this.appendMessageToXlsxPoleUp(this.messages.innerHTML);
+        this.poleUp.addEventListener('click', async (event) => {
+            await this.appendMessageToXlsxPoleUp(this.messages.innerHTML);
         });
 
         // On click emit an event to write poleDown to xlsx
-        this.poleDown.addEventListener('click', (event) => {
-            this.appendMessageToXlsxPoleDown(this.messages.innerHTML);
+        this.poleDown.addEventListener('click', async (event) => {
+            await this.appendMessageToXlsxPoleDown(this.messages.innerHTML);
         });
 
         // On click emit an event to write generic action to xlsx
-        this.writeGeneric.addEventListener('click', (event) => {
-            this.appendMessageToXlsxGenericAction(this.messages.innerHTML);
+        this.writeGeneric.addEventListener('click', async (event) => {
+            await this.appendMessageToXlsxGenericAction(this.messages.innerHTML);
         });
 
         // On click clear all messages
@@ -201,7 +201,7 @@ class ServerElement extends HTMLElement {
      * Append a SOL or EOL message to the xlsx-file automaticaly
      * @param {String} message
      */
-    appendMessageToXlsxAuto(message) {
+    async appendMessageToXlsxAuto(message) {
         const str = message.split(',');
         const pathXLSX = this.getFilePath();
         const data = {
@@ -217,11 +217,11 @@ class ServerElement extends HTMLElement {
             sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async() => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -235,7 +235,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -251,7 +251,7 @@ class ServerElement extends HTMLElement {
                     right: { style: 'thin', color: { argb: '000000' } },
                 };
             });
-            workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
+            await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
 
@@ -493,7 +493,7 @@ class ServerElement extends HTMLElement {
      * Append a Off Water message to the xlsx-file
      * @param {String} message
      */
-    appendMessageToXlsxOffWater(message) {
+    async appendMessageToXlsxOffWater(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
@@ -509,11 +509,11 @@ class ServerElement extends HTMLElement {
             sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -527,7 +527,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -543,7 +543,7 @@ class ServerElement extends HTMLElement {
                     right: { style: 'thin', color: { argb: '000000' } },
                 };
             });
-            workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
+            await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
 
@@ -551,7 +551,7 @@ class ServerElement extends HTMLElement {
      * Append a On Deck message to the xlsx-file
      * @param {String} message
      */
-    appendMessageToXlsxOnDeck(message) {
+    async appendMessageToXlsxOnDeck(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
@@ -567,11 +567,11 @@ class ServerElement extends HTMLElement {
             sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -585,7 +585,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -601,7 +601,7 @@ class ServerElement extends HTMLElement {
                     right: { style: 'thin', color: { argb: '000000' } },
                 };
             });
-            workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
+            await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
 
@@ -609,7 +609,7 @@ class ServerElement extends HTMLElement {
      * Append a Off Deck message to the xlsx-file
      * @param {String} message
      */
-    appendMessageToXlsxOffDeck(message) {
+    async appendMessageToXlsxOffDeck(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
@@ -625,11 +625,11 @@ class ServerElement extends HTMLElement {
             sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -643,7 +643,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -659,7 +659,7 @@ class ServerElement extends HTMLElement {
                     right: { style: 'thin', color: { argb: '000000' } },
                 };
             });
-            workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
+            await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
 
@@ -667,7 +667,7 @@ class ServerElement extends HTMLElement {
      * Append a Pole Up message to the xlsx-file
      * @param {String} message
      */
-    appendMessageToXlsxPoleUp(message) {
+    async appendMessageToXlsxPoleUp(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
@@ -683,11 +683,11 @@ class ServerElement extends HTMLElement {
             sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async() => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -701,7 +701,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -717,7 +717,7 @@ class ServerElement extends HTMLElement {
                     right: { style: 'thin', color: { argb: '000000' } },
                 };
             });
-            workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
+            await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
 
@@ -725,7 +725,7 @@ class ServerElement extends HTMLElement {
      * Append a Pole Down message to the xlsx-file
      * @param {String} message
      */
-    appendMessageToXlsxPoleDown(message) {
+    async appendMessageToXlsxPoleDown(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
@@ -741,11 +741,11 @@ class ServerElement extends HTMLElement {
             sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -759,7 +759,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -775,7 +775,7 @@ class ServerElement extends HTMLElement {
                     right: { style: 'thin', color: { argb: '000000' } },
                 };
             });
-            workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
+            await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
 
@@ -783,7 +783,7 @@ class ServerElement extends HTMLElement {
      * Append a SVP Performed message to the xlsx-file
      * @param {String} message
      */
-    appendMessageToXlsxSvpPerformed(message) {
+    async appendMessageToXlsxSvpPerformed(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
@@ -799,11 +799,11 @@ class ServerElement extends HTMLElement {
             sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -817,7 +817,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -833,7 +833,7 @@ class ServerElement extends HTMLElement {
                     right: { style: 'thin', color: { argb: '000000' } },
                 };
             });
-            workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
+            await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
 
@@ -842,7 +842,7 @@ class ServerElement extends HTMLElement {
      * Append a Generic Action message to the xlsx-file
      * @param {String} message
      */
-    appendMessageToXlsxGenericAction(message) {
+    async appendMessageToXlsxGenericAction(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
@@ -858,11 +858,11 @@ class ServerElement extends HTMLElement {
             sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -876,7 +876,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -892,7 +892,7 @@ class ServerElement extends HTMLElement {
                     right: { style: 'thin', color: { argb: '000000' } },
                 };
             });
-            workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
+            await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
 }

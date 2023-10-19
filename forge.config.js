@@ -15,6 +15,8 @@ module.exports = {
         certificateFile: '',
         certificatePassword: '',
         signWithParams: '',
+        iconUrl: './icon.ico',
+        setupIcon: './icon.ico',
       }
     },
     // {

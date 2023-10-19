@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, autoUpdater, Menu, protocol, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, autoUpdater, Menu } = require('electron');
 const log = require('electron-log');
 require('update-electron-app')({
   updateInterval: '1 hour',
@@ -49,15 +49,43 @@ function createWindow() {
   win.loadFile('index.html')
   // win.setMinimumSize(317, 330); // Imposta le dimensioni minime della finestra a 400x400 pixel
   win.webContents.openDevTools()
-  win.setMenu(null);
   // win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
   // win.removeMenu(null); // Rimuove il menu forse
 }
 
-// function sendStatusToWindow(text) {
-//     log.info(text);
-//     win.webContents.send('message', text);
-// }
+const menu = Menu.buildFromTemplate([
+  {
+    label: 'File',
+    submenu: [
+      {
+        label: 'Quit',
+        click: () => {
+          app.quit();
+        }
+      }
+    ]
+  },
+  {
+    label: 'Help',
+    submenu: [
+      {
+        label: 'Update Info',
+        click: () => {
+          const options = {
+            type: 'info',
+            title: 'Survey Logger Release',
+            message: `(Versione Attuale: ${app.getVersion()})` +"\n Il link al repository GitHub è:",
+            detail: 'https://github.com/Dantesk/survey-logger/releases/latest',
+            buttons: ['OK']
+          };
+          dialog.showMessageBox(null, options);
+        }
+      },
+    ]
+  }
+]);
+Menu.setApplicationMenu(menu);
+
 
 app.whenReady().then(createWindow)
 
