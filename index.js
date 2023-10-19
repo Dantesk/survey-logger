@@ -35,10 +35,10 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 517,
     height: 530,
-    // minWidth: 317, // Imposta la larghezza minima della finestra a 400 pixel
-    // minHeight: 330, // Imposta l'altezza minima della finestra a 400 pixel
-    // maxWidth: 517, // Imposta la larghezza minima della finestra a 400 pixel
-    // minHeight: 530, // Imposta l'altezza minima della finestra a 400 pixel
+    minWidth: 317, // Imposta la larghezza minima della finestra a 400 pixel
+    minHeight: 330, // Imposta l'altezza minima della finestra a 400 pixel
+    maxWidth: 517, // Imposta la larghezza minima della finestra a 400 pixel
+    minHeight: 530, // Imposta l'altezza minima della finestra a 400 pixel
     resizable: true,
     maximizable: true,
     webPreferences: {
@@ -47,8 +47,8 @@ function createWindow() {
     }
   })
   win.loadFile('index.html')
-  // win.setMinimumSize(317, 330); // Imposta le dimensioni minime della finestra a 400x400 pixel
-  win.webContents.openDevTools()
+  win.setMinimumSize(317, 330); // Imposta le dimensioni minime della finestra a 400x400 pixel
+  //win.webContents.openDevTools()
   // win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
   // win.removeMenu(null); // Rimuove il menu forse
 }
