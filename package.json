@@ -12,6 +12,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish"
   },
+  "appUpdateConfigPath": "./dev-app-update.yml",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dantesk/survey-logger.git"

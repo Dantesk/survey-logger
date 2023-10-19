@@ -1,0 +1,5 @@
+provider: github
+owner: Dantesk
+repo: survey-logger
+private: false
+publishAutoUpdate: false

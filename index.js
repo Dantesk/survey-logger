@@ -1,6 +1,5 @@
-const { app, BrowserWindow, dialog, Menu, protocol, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, autoUpdater, Menu, protocol, ipcMain } = require('electron');
 const log = require('electron-log');
-const { autoUpdater } = require('electron-updater');
 require('update-electron-app')({
   updateInterval: '1 hour',
   logger: log
@@ -85,10 +84,6 @@ app.on('activate', () => {
 // Uncomment any of the below events to listen for them.  Also,
 // look in the previous section to see them being used.
 //-------------------------------------------------------------------
-const server = 'https://github.com'
-const feed = `${server}/Dantesk/survey-logger/releases/latest/${process.platform}-${process.arch}/${app.getVersion()}`
-
-autoUpdater.setFeedURL(feed, { verifySignature: false });
 
 autoUpdater.on('checking-for-update', () => {
   log.info('Checking for update...');
