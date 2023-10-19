@@ -3,14 +3,18 @@ require('dotenv').config();
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: './icon' // no file extension required
+    icon: './icon', // no file extension required
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        "iconUrl": "./icon.ico"
+        authors: 'Paolo Lagalante',
+        description: 'A simple electron app to create UDP servers to receive datagrams from Qisey',
+        certificateFile: '',
+        certificatePassword: '',
+        signWithParams: '',
       }
     },
     // {
@@ -22,10 +26,8 @@ module.exports = {
     // },
     {
       name: '@electron-forge/maker-zip',
-      config: {
-        "iconUrl": "./icon.icns"
-      },
       platforms: ['darwin'],
+      config: {},
     },
     {
       name: '@electron-forge/maker-deb',
