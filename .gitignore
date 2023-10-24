@@ -108,5 +108,6 @@ electron-udp-win32-x64
 electron-udp.code-workspace
 
 /out
+/test
 
 package-lock.*
