@@ -69,12 +69,18 @@ const menu = Menu.buildFromTemplate([
     label: 'Help',
     submenu: [
       {
-        label: 'Update Info',
+        label: 'Check update...',
+        click: () => {
+          autoUpdater.checkForUpdates();
+        }
+      },
+      {
+        label: 'Info',
         click: () => {
           const options = {
             type: 'info',
             title: 'Survey Logger Release',
-            message: `(Versione Attuale: ${app.getVersion()})` +"\n Il link al repository GitHub è:",
+            message: `(Version: ${app.getVersion()})` +"\n Link del repository GitHub è:",
             detail: 'https://github.com/Dantesk/survey-logger/releases/latest',
             buttons: ['OK']
           };
@@ -116,24 +122,42 @@ app.on('activate', () => {
 autoUpdater.on('checking-for-update', () => {
   log.info('Checking for update...');
 })
-autoUpdater.on('update-available', (info) => {
-  log.info('Update available.');
-})
+
+autoUpdater.on('update-available', () => {
+  const options = {
+    type: 'info',
+    title: 'Survey Logger Update',
+    message: 'A new update is available. Do you want to download and install it now?',
+    buttons: ['Yes', 'No']
+  };
+  dialog.showMessageBox(null, options).then((response) => {
+    if (response.response === 0) {
+      autoUpdater.downloadUpdate();
+    }
+  });
+});
+
 autoUpdater.on('update-not-available', (info) => {
   log.info('Update not available.');
 })
-autoUpdater.on('error', (err) => {
-  log.info('Error in auto-updater. ' + err);
-})
+
+autoUpdater.on('error', (error) => {
+  const options = {
+    type: 'error',
+    title: 'Survey Logger Update',
+    message: 'An error occurred while checking for updates.',
+    detail: error.toString(),
+    buttons: ['OK']
+  };
+  dialog.showMessageBox(null, options);
+});
+
 autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
   log.info(log_message);
 })
-autoUpdater.on('update-downloaded', (info) => {
-  log.info('Update downloaded');
-});
 
 // Listen for the update-downloaded event
 autoUpdater.on('update-downloaded', (ev, info) => {
@@ -155,6 +179,5 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 
 // Check for updates when the app is ready
 app.on('ready', function () {
-  log.info('App ready - check for update');
   autoUpdater.checkForUpdates();
 });
