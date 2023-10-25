@@ -211,10 +211,10 @@ class ServerElement extends HTMLElement {
             comment: 'OP',
             lineName: str[3],
             dbName: str[4],
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async() => {
@@ -269,10 +269,10 @@ class ServerElement extends HTMLElement {
             comment: 'OP',
             lineName: str[3],
             dbName: str[4],
-            vesselEasting: isNaN(isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5])) ? '' : isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6])) == 0 ? '' : isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7])) ? '' : isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])) ? '' : isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])
+            vesselEasting: Number.isNaN(Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5])) ? '' : Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6])) == 0 ? '' : Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7])) ? '' : Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])) ? '' : Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async() => {
@@ -327,10 +327,10 @@ class ServerElement extends HTMLElement {
             comment: 'OP',
             lineName: str[3],
             dbName: str[4],
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
@@ -388,10 +388,10 @@ class ServerElement extends HTMLElement {
             comment: 'OP',
             lineName: '',
             dbName: '',
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await fs.readFile(pathXLSX, (error, data) => {
@@ -503,10 +503,10 @@ class ServerElement extends HTMLElement {
             comment: 'OP',
             lineName: '',
             dbName: '',
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
@@ -561,10 +561,10 @@ class ServerElement extends HTMLElement {
             comment: 'OP',
             lineName: '',
             dbName: '',
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
@@ -619,10 +619,10 @@ class ServerElement extends HTMLElement {
             comment: 'OP',
             lineName: '',
             dbName: '',
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
@@ -672,16 +672,16 @@ class ServerElement extends HTMLElement {
         const pathXLSX = path.join(this.getFilePath())
         console.log(str[1]);
         const data = {
-            date: str[1].trim() === '' ? getUTCDateWithoutTime() : str[1],
-            time: str[2].trim() === '' ? getUTCTimeWithoutDate() : str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: `${this.poleInstrument.value == "Choose instrument..." ? '$' : this.poleInstrument.value} ${this.poleChoose.value == "Choose position..." ? '' : this.poleChoose.value} pole up`,
             comment: 'OP',
             lineName: "",
             dbName: "",
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async() => {
@@ -730,16 +730,16 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1].trim() === '' ? getUTCDateWithoutTime() : str[1],
-            time: str[2].trim() === '' ? getUTCTimeWithoutDate() : str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: `${this.poleInstrument.value == "Choose instrument..." ? '$' : this.poleInstrument.value} ${this.poleChoose.value == "Choose position..." ? '' : this.poleChoose.value} pole down`,
             comment: 'OP',
             lineName: "",
             dbName: "",
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
@@ -788,16 +788,16 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1].trim() === '' ? getUTCDateWithoutTime() : str[1],
-            time: str[2].trim() === '' ? getUTCTimeWithoutDate() : str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: 'SVP Performed',
-            comment: "OP",
-            lineName: "",
-            dbName: "",
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            comment: 'OP',
+            lineName: '',
+            dbName: '',
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
@@ -847,16 +847,16 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1].trim() === '' ? getUTCDateWithoutTime() : str[1],
-            time: str[2].trim() === '' ? getUTCTimeWithoutDate() : str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: this.event.value,
             comment: this.comment.value,
             lineName: "",
             dbName: "",
-            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
+            vesselEasting: Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
@@ -902,7 +902,7 @@ class ServerElement extends HTMLElement {
         const year = now.getUTCFullYear();
         const month = now.getUTCMonth() + 1; // aggiungi 1 perché i mesi iniziano da 0
         const day = now.getUTCDate();
-        const date = `${year}/${month}/${day}`;
+        const date = `${day}/${month}/${year}`;
         return date;
     }
 
