@@ -670,9 +670,10 @@ class ServerElement extends HTMLElement {
     async appendMessageToXlsxPoleUp(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
+        console.log(str[1]);
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1].trim() === '' ? getUTCDateWithoutTime() : str[1],
+            time: str[2].trim() === '' ? getUTCTimeWithoutDate() : str[2],
             event: `${this.poleInstrument.value == "Choose instrument..." ? '$' : this.poleInstrument.value} ${this.poleChoose.value == "Choose position..." ? '' : this.poleChoose.value} pole up`,
             comment: 'OP',
             lineName: "",
@@ -729,8 +730,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1].trim() === '' ? getUTCDateWithoutTime() : str[1],
+            time: str[2].trim() === '' ? getUTCTimeWithoutDate() : str[2],
             event: `${this.poleInstrument.value == "Choose instrument..." ? '$' : this.poleInstrument.value} ${this.poleChoose.value == "Choose position..." ? '' : this.poleChoose.value} pole down`,
             comment: 'OP',
             lineName: "",
@@ -787,8 +788,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1].trim() === '' ? getUTCDateWithoutTime() : str[1],
+            time: str[2].trim() === '' ? getUTCTimeWithoutDate() : str[2],
             event: 'SVP Performed',
             comment: "OP",
             lineName: "",
@@ -846,8 +847,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1].trim() === '' ? getUTCDateWithoutTime() : str[1],
+            time: str[2].trim() === '' ? getUTCTimeWithoutDate() : str[2],
             event: this.event.value,
             comment: this.comment.value,
             lineName: "",
@@ -895,5 +896,24 @@ class ServerElement extends HTMLElement {
             await workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
         });
     }
+
+    getUTCDateWithoutTime() {
+        const now = new Date();
+        const year = now.getUTCFullYear();
+        const month = now.getUTCMonth() + 1; // aggiungi 1 perché i mesi iniziano da 0
+        const day = now.getUTCDate();
+        const date = `${year}/${month}/${day}`;
+        return date;
+    }
+
+    getUTCTimeWithoutDate() {
+        const now = new Date();
+        const hh = now.getUTCHours();
+        const mm = now.getUTCMinutes();
+        const ss = now.getUTCSeconds();
+        const time = `${hh}:${mm}:${ss}`;
+        return time;
+    }
 }
+
 customElements.define('udp-server', ServerElement)
