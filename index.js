@@ -48,7 +48,7 @@ function createWindow() {
   })
   win.loadFile('index.html')
   win.setMinimumSize(317, 330); // Imposta le dimensioni minime della finestra a 400x400 pixel
-  //win.webContents.openDevTools()
+  // win.webContents.openDevTools()
   // win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
   // win.removeMenu(null); // Rimuove il menu forse
 }
@@ -80,7 +80,7 @@ const menu = Menu.buildFromTemplate([
           const options = {
             type: 'info',
             title: 'Survey Logger Release',
-            message: `(Version: ${app.getVersion()})` +"\n Link del repository GitHub è:",
+            message: `(Version: ${app.getVersion()})` + "\n Repository GitHub:",
             detail: 'https://github.com/Dantesk/survey-logger/releases/latest',
             buttons: ['OK']
           };
@@ -90,6 +90,7 @@ const menu = Menu.buildFromTemplate([
     ]
   }
 ]);
+
 Menu.setApplicationMenu(menu);
 
 
