@@ -1,7 +1,7 @@
 {
   "name": "survey-logger",
   "version": "1.2.1",
-  "description": "A simple electron app to create UDP servers to receive datagrams from Qisey",
+  "description": "A simple app to create UDP servers to receive datagrams from Qinsy and save to exceljs",
   "main": "index.js",
   "scripts": {
     "pack": "electron-packager . --overwrite --icon=./icon",
@@ -19,8 +19,8 @@
   "keywords": [
     "udp",
     "server",
-    "client",
-    "electron"
+    "electron",
+    "qinsy"
   ],
   "author": {
     "name": "Paolo Lagalante",
