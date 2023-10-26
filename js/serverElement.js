@@ -120,7 +120,7 @@ class ServerElement extends HTMLElement {
             this.dispatchEvent(delete_event);
         });
 
-        // On click emit an event to write sol to csv
+        // On click emit an event to write sol to xlsx
         this.sol.addEventListener('click', async (event) => {
             await this.appendMessageToXlsxSOL(this.messages.innerHTML)
         });

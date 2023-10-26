@@ -1,9 +1,11 @@
 const { app, BrowserWindow, dialog, autoUpdater, Menu } = require('electron');
 const log = require('electron-log');
-require('update-electron-app')({
-  updateInterval: '1 hour',
-  logger: log
-})
+const path = require('path');
+
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (require('electron-squirrel-startup')) {
+  app.quit();
+}
 //-------------------------------------------------------------------
 // Ignore certificate errors
 //
@@ -35,19 +37,21 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 517,
     height: 530,
-    minWidth: 317, // Imposta la larghezza minima della finestra a 400 pixel
-    minHeight: 330, // Imposta l'altezza minima della finestra a 400 pixel
-    maxWidth: 517, // Imposta la larghezza minima della finestra a 400 pixel
-    minHeight: 530, // Imposta l'altezza minima della finestra a 400 pixel
+    minWidth: 317, // Imposta la larghezza minima della finestra a 317 pixel
+    minHeight: 330, // Imposta l'altezza minima della finestra a 330 pixel
+    maxWidth: 517, // Imposta la larghezza minima della finestra a 517 pixel
+    minHeight: 530, // Imposta l'altezza minima della finestra a 530 pixel
     resizable: true,
     maximizable: true,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
+      webSecurity: true,
+      contextIsolation: false,
     }
   })
-  win.loadFile('index.html')
-  win.setMinimumSize(317, 330); // Imposta le dimensioni minime della finestra a 400x400 pixel
+  win.loadFile(path.join(__dirname, 'index.html'));
+  win.setMinimumSize(317, 330); // Imposta le dimensioni minime della finestra a 317x330 pixel
   // win.webContents.openDevTools()
   // win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
   // win.removeMenu(null); // Rimuove il menu forse
@@ -182,6 +186,3 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 app.on('ready', function () {
   autoUpdater.checkForUpdates();
 });
-
-// run this as early in the main process as possible
-if (require('electron-squirrel-startup')) app.quit();

@@ -11,10 +11,11 @@ module.exports = {
       name: '@electron-forge/maker-squirrel',
       config: {
         authors: 'Paolo Lagalante',
-        description: 'A simple electron app to create UDP servers to receive datagrams from Qisey',
+        description: 'Survey Logger Setup',
         certificateFile: '',
         certificatePassword: '',
         signWithParams: '',
+        setupIcon: './icon.ico'
       }
     },
     // {
@@ -37,6 +38,12 @@ module.exports = {
       name: '@electron-forge/maker-rpm',
       config: {},
     },
+    // {
+    //   name: '@electron-forge/maker-dmg',
+    //   config: {
+    //     format: 'ULFO'
+    //   }
+    // }
   ],
   plugins: [
     {

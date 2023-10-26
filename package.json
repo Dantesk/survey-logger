@@ -22,7 +22,10 @@
     "client",
     "electron"
   ],
-  "author": "Paolo Lagalante",
+  "author": {
+    "name": "Paolo Lagalante",
+    "email": "lagalante.dev.site@gmail.com"
+  },
   "license": "LGPL-3.0-only",
   "bugs": {
     "url": "https://github.com/Dantesk/survey-logger/issues"
@@ -37,14 +40,12 @@
     "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
     "@electron-forge/publisher-github": "^6.4.2",
     "dotenv": "^16.3.1",
-    "electron": "^11.0.4",
+    "electron": "^27.0.2",
     "electron-winstaller": "^5.1.0"
   },
   "dependencies": {
     "electron-log": "^4.4.8",
     "electron-squirrel-startup": "^1.0.0",
-    "electron-updater": "^6.1.4",
-    "exceljs": "^4.3.0",
-    "update-electron-app": "^2.0.1"
+    "exceljs": "^4.3.0"
   }
 }
