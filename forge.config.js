@@ -15,7 +15,10 @@ module.exports = {
         certificateFile: '',
         certificatePassword: '',
         signWithParams: '',
-        setupIcon: './icon.ico'
+        setupIcon: './icon.ico',
+        exe: 'Survey Logger',
+        iconUrl: 'https://github.com/Dantesk/survey-logger/blob/main/icon.ico',
+        setupExe:"Survey Logger Setup"
       }
     },
     // {
