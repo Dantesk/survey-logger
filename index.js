@@ -1,7 +1,17 @@
-const { app, BrowserWindow, dialog, autoUpdater, Menu, ipcMain, nativeTheme } = require('electron');
+const { app, BrowserWindow, dialog, autoUpdater, Menu, ipcMain, nativeTheme, Notification } = require('electron');
 const { updateElectronApp } = require('update-electron-app')
 const log = require('electron-log');
 const path = require('node:path')
+
+const NOTIFICATION_TITLE = 'Survey Logger Update'
+const CHECK_UPDATE = 'Checking for updates...'
+const NO_UPDATE = 'No update available...'
+function showNotificationCheck () {
+  new Notification({ title: NOTIFICATION_TITLE, body: CHECK_UPDATE }).show()
+}
+function showNotificationNoUpdate () {
+  new Notification({ title: NOTIFICATION_TITLE, body: NO_UPDATE }).show()
+}
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -119,7 +129,7 @@ const menu = Menu.buildFromTemplate([
 Menu.setApplicationMenu(menu);
 
 
-app.whenReady().then(createWindow)
+app.whenReady().then(createWindow).then(showNotificationCheck);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -146,7 +156,7 @@ app.on('activate', () => {
 //-------------------------------------------------------------------
 
 autoUpdater.on('checking-for-update', () => {
-  log.info('Checking for update...');
+  showNotificationCheck();
 })
 
 autoUpdater.on('update-available', () => {
@@ -164,7 +174,7 @@ autoUpdater.on('update-available', () => {
 });
 
 autoUpdater.on('update-not-available', (info) => {
-  log.info('Update not available.');
+  showNotificationNoUpdate();
 })
 
 autoUpdater.on('error', (error) => {
