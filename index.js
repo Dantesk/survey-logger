@@ -1,6 +1,6 @@
-const { app, BrowserWindow, dialog, autoUpdater, Menu } = require('electron');
+const { app, BrowserWindow, dialog, autoUpdater, Menu, ipcMain, nativeTheme } = require('electron');
 const log = require('electron-log');
-const path = require('path');
+const path = require('node:path')
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -48,6 +48,7 @@ function createWindow() {
       enableRemoteModule: true,
       webSecurity: true,
       contextIsolation: false,
+      // preload: path.join(__dirname, 'preload.js')
     }
   })
   win.loadFile(path.join(__dirname, 'index.html'));
@@ -57,12 +58,26 @@ function createWindow() {
   // win.removeMenu(null); // Rimuove il menu forse
 }
 
+ipcMain.handle('dark-mode:toggle', () => {
+  if (nativeTheme.shouldUseDarkColors) {
+    nativeTheme.themeSource = 'light'
+  } else {
+    nativeTheme.themeSource = 'dark'
+  }
+  return nativeTheme.shouldUseDarkColors
+})
+
+ipcMain.handle('dark-mode:system', () => {
+  nativeTheme.themeSource = 'system'
+})
+
 const menu = Menu.buildFromTemplate([
   {
     label: 'File',
     submenu: [
       {
-        label: 'Quit',
+        label: 'Exit',
+        icon: path.join(__dirname, 'assets', 'exit-icon.png'),
         click: () => {
           app.quit();
         }
@@ -74,12 +89,14 @@ const menu = Menu.buildFromTemplate([
     submenu: [
       {
         label: 'Check update...',
+        icon: path.join(__dirname, 'assets', 'update-icon.png'), // Aggiunta dell'icona all'opzione "Exit"
         click: () => {
           autoUpdater.checkForUpdates();
         }
       },
       {
         label: 'Info',
+        icon: path.join(__dirname, 'assets', 'info-icon.png'), // Aggiunta dell'icona all'opzione "Exit"
         click: () => {
           const options = {
             type: 'info',
@@ -132,7 +149,7 @@ autoUpdater.on('update-available', () => {
   const options = {
     type: 'info',
     title: 'Survey Logger Update',
-    message: 'A new update is available. Do you want to download and install it now?',
+    message: 'A new update is available. Do you want to download now?',
     buttons: ['Yes', 'No']
   };
   dialog.showMessageBox(null, options).then((response) => {
@@ -161,7 +178,15 @@ autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-  log.info(log_message);
+  const options = {
+    type: 'info',
+    buttons: [],
+    title: 'Download Progress',
+    message: 'Download in progress...',
+    detail: `Downloaded ${progressObj.percent}% (${progressObj.transferred}/${progressObj.total})`,
+    noLink: true,
+  };
+  dialog.showMessageBox(null, options);
 })
 
 // Listen for the update-downloaded event

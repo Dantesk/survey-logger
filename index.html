@@ -15,11 +15,11 @@
     <meta name="description" content="">
     <meta name="author" content="Paolo Lagalante">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="stylesheet" href="vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/client.css">
-    <link rel="stylesheet" href="css/server.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/client.css">
+    <link rel="stylesheet" href="assets/css/server.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -215,7 +215,7 @@
                     <div class="input-group input-group-sm" role="group" aria-label="Basic example">
                         <button type="button" name="inWater" class="btn btn-object-action">Object In Water</button>
                         <button type="button" name="offWater" class="btn btn-object-action">Object Off Water</button>
-                        <select class="btn-outline-pole form-select" id="water-instrument" name="water-instrument"
+                        <select class="btn-outline-object form-select" id="water-instrument" name="water-instrument"
                             aria-label="Select position...">
                             <option selected>Choose instrument...</option>
                             <option value="SSS">SIDESCAN</option>
@@ -229,7 +229,7 @@
                     <div class="input-group input-group-sm" role="group" aria-label="Basic example">
                         <button type="button" name="onDeck" class="btn btn-object-action">Object On-deck</button>
                         <button type="button" name="offDeck" class="btn btn-object-action">Object Off-deck</button>
-                        <select class="btn-outline-pole form-select" id="deck-instrument" name="deck-instrument"
+                        <select class="btn-outline-object form-select" id="deck-instrument" name="deck-instrument"
                             aria-label="Select position...">
                             <option selected>Choose instrument...</option>
                             <option value="SSS">SIDESCAN</option>
@@ -276,7 +276,7 @@
             </div>
         </div>
     </template>
-    <script src="vendor/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/bootstrap.bundle.min.js"></script>
     <script src="js/node.js"></script>
     <script src="js/generator.js"></script>
     <script src="js/socket.js"></script>
@@ -286,6 +286,8 @@
     <script src="js/serverElement.js"></script>
     <script src="js/server.js"></script>
     <script src="js/serverManager.js"></script>
+    <!-- <script src="preload.js"></script> -->
+    <!-- <script src="renderer.js"></script> -->
     <script src="js/app.js"></script>
     <script>const app = new App();</script>
 </body>

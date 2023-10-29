@@ -1,3 +1,29 @@
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #333;
+        color: white;
+    }
+    .server {
+        background: #333;
+        color: white;
+    }
+    .modal-content{
+        background: #333;
+        color: white;
+    }
+    .btn-close{
+        color: white;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: #ddd;
+        color: black;
+    }
+}
+
 .flex-50 {
     flex: 50%;
 }
@@ -14,14 +40,16 @@
 .btn-sol {
     background-color: #a3e69d;
 }
+
 .btn-sol:hover {
     background-color: #6bc987;
-  }
+}
 
 /* EOL Button */
 .btn-eol {
     background-color: #FFC0CB;
 }
+
 .btn-eol:hover {
     background-color: #FFAEB9;
 }
@@ -43,6 +71,10 @@
 /* Object action button */
 .btn-object-action {
     background-color: #A5D9FD;
+}
+
+.btn-outline-object {
+    border-color: #A5D9FD;
 }
 
 .btn-object-action:hover {
