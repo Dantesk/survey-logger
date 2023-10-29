@@ -1,4 +1,5 @@
 const { app, BrowserWindow, dialog, autoUpdater, Menu, ipcMain, nativeTheme } = require('electron');
+const { updateElectronApp } = require('update-electron-app')
 const log = require('electron-log');
 const path = require('node:path')
 
@@ -7,7 +8,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-require('update-electron-app')()
+updateElectronApp()
 
 //-------------------------------------------------------------------
 // Ignore certificate errors
