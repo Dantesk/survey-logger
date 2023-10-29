@@ -6,6 +6,9 @@ const path = require('node:path')
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
+
+require('update-electron-app')()
+
 //-------------------------------------------------------------------
 // Ignore certificate errors
 //
