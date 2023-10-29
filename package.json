@@ -1,6 +1,6 @@
 {
   "name": "survey-logger",
-  "version": "1.2.2",
+  "version": "1.2.2.1",
   "description": "A simple app to create UDP servers to receive datagrams from Qinsy and save to exceljs",
   "main": "index.js",
   "scripts": {
