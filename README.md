@@ -4,6 +4,9 @@ A simple app to create UDP servers receive datagrams from client qinsy and save 
 ## Adding a Server
 Press on Add Server button to open modal. Select your excel file, set IP Address and Port and click Submit button.
 
+## Dark mode system
+Dark mode support is now enabled, these work with the main theme of your system.
+
 ## Development
 Run `npm install`. During development, you can use `npm start` to start the electron application. 
 
