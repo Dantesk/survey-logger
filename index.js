@@ -3,14 +3,16 @@ const { updateElectronApp } = require('update-electron-app')
 const log = require('electron-log');
 const path = require('node:path')
 
-const NOTIFICATION_TITLE = 'Survey Logger Update'
-const CHECK_UPDATE = 'Checking for updates...'
-const NO_UPDATE = 'No update available...'
-function showNotificationCheck () {
-  new Notification({ title: NOTIFICATION_TITLE, body: CHECK_UPDATE }).show()
-}
-function showNotificationNoUpdate () {
-  new Notification({ title: NOTIFICATION_TITLE, body: NO_UPDATE }).show()
+const NOTIFICATION_TITLE = 'Survey Logger Update';
+const CHECK_UPDATE = 'Checking for updates...';
+const NO_UPDATE = 'No update available';
+let LIMIT_NOTIFICATION = false
+
+function showNotification (info) {
+  if(!LIMIT_NOTIFICATION){
+    new Notification({ title: NOTIFICATION_TITLE, body: info ? NO_UPDATE : CHECK_UPDATE }).show()
+    LIMIT_NOTIFICATION = true;
+  }
 }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -53,8 +55,8 @@ function createWindow() {
     height: 530,
     minWidth: 317, // Imposta la larghezza minima della finestra a 317 pixel
     minHeight: 330, // Imposta l'altezza minima della finestra a 330 pixel
-    maxWidth: 517, // Imposta la larghezza minima della finestra a 517 pixel
-    minHeight: 530, // Imposta l'altezza minima della finestra a 530 pixel
+    // maxWidth: 517, // Imposta la larghezza minima della finestra a 517 pixel
+    // minHeight: 530, // Imposta l'altezza minima della finestra a 530 pixel
     resizable: true,
     maximizable: true,
     webPreferences: {
@@ -67,9 +69,8 @@ function createWindow() {
   })
   win.loadFile(path.join(__dirname, 'index.html'));
   win.setMinimumSize(317, 330); // Imposta le dimensioni minime della finestra a 317x330 pixel
-  // win.webContents.openDevTools()
-  // win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
-  // win.removeMenu(null); // Rimuove il menu forse
+  win.webContents.openDevTools()
+
 }
 
 ipcMain.handle('dark-mode:toggle', () => {
@@ -129,7 +130,7 @@ const menu = Menu.buildFromTemplate([
 Menu.setApplicationMenu(menu);
 
 
-app.whenReady().then(createWindow).then(showNotificationCheck);
+app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -156,7 +157,7 @@ app.on('activate', () => {
 //-------------------------------------------------------------------
 
 autoUpdater.on('checking-for-update', () => {
-  showNotificationCheck();
+  showNotification();
 })
 
 autoUpdater.on('update-available', () => {
@@ -174,7 +175,7 @@ autoUpdater.on('update-available', () => {
 });
 
 autoUpdater.on('update-not-available', (info) => {
-  showNotificationNoUpdate();
+  showNotification(info);
 })
 
 autoUpdater.on('error', (error) => {

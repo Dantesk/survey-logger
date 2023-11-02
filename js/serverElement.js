@@ -205,8 +205,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = this.getFilePath();
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: str[0] == 'Recording' ? 'SOL' : 'EOL',
             comment: 'OP',
             lineName: str[3],
@@ -217,7 +217,7 @@ class ServerElement extends HTMLElement {
             sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
@@ -263,8 +263,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: 'SOL',
             comment: 'OP',
             lineName: str[3],
@@ -275,7 +275,7 @@ class ServerElement extends HTMLElement {
             sssNorth: Number.isNaN(Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])) ? '' : Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])
         };
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = await workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
@@ -321,8 +321,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: 'EOL',
             comment: 'OP',
             lineName: str[3],
@@ -351,7 +351,7 @@ class ServerElement extends HTMLElement {
                 { header: 'SSS Easting', key: 'sssEsting' },
                 { header: 'SSS Northing', key: 'sssNorth' },
             ];
-            await  worksheet.addRow(data);
+            await worksheet.addRow(data);
             // Imposta gli stili per la riga appena inserita
             const row = worksheet.lastRow;
             row.eachCell((cell) => {
@@ -371,7 +371,6 @@ class ServerElement extends HTMLElement {
         });
     }
 
-    
     /**
      * Appends a message to an Excel file in water format.
      * @async
@@ -382,8 +381,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const dataFormat = {
-            date: str[1],
-            time: str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: `${this.waterInstrument.value == "Choose instrument..." ? '$' : this.waterInstrument.value} in water`,
             comment: 'OP',
             lineName: '',
@@ -451,42 +450,6 @@ class ServerElement extends HTMLElement {
                     console.log(error);
                 });
         });
-        // workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(() => {
-        //     let worksheet = workbook.getWorksheet('Survey_LOG');
-        //     if (!worksheet) {
-        //         // Se il foglio di lavoro Survey_LOG non esiste, crealo
-        //         workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
-        //     }
-        //     worksheet.columns = [
-        //         { header: 'Date', key: 'date' },
-        //         { header: 'Time', key: 'time' },
-        //         { header: 'Event', key: 'event' },
-        //         { header: 'Comment', key: 'comment' },
-        //         { header: 'Line Name', key: 'lineName' },
-        //         { header: 'DB Name', key: 'dbName' },
-        //         { header: 'Vessel Easting', key: 'vesselEasting' },
-        //         { header: 'Vessel Northing', key: 'vesselNorthing' },
-        //         { header: 'SSS Easting', key: 'sssEsting' },
-        //         { header: 'SSS Northing', key: 'sssNorth' },
-        //     ];
-        //     worksheet.addRow(data);
-        //     // Imposta gli stili per la riga appena inserita
-        //     const row = worksheet.lastRow;
-        //     row.eachCell((cell) => {
-        //         cell.fill = {
-        //             type: 'pattern',
-        //             pattern: 'solid',
-        //             fgColor: { argb: 'A5D9FD' },
-        //         };
-        //         cell.border = {
-        //             top: { style: 'thin', color: { argb: '000000' } },
-        //             left: { style: 'thin', color: { argb: '000000' } },
-        //             bottom: { style: 'thin', color: { argb: '000000' } },
-        //             right: { style: 'thin', color: { argb: '000000' } },
-        //         };
-        //     });
-        //     workbook.xlsx.writeFile(pathXLSX, { useFileSystem: true });
-        // });
     }
 
     /**
@@ -497,8 +460,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: `${this.waterInstrument.value == "Choose instrument..." ? '$' : this.waterInstrument.value} off water`,
             comment: 'OP',
             lineName: '',
@@ -555,8 +518,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: `${this.deckInstrument.value == "Choose instrument..." ? '$' : this.deckInstrument.value} on deck`,
             comment: 'OP',
             lineName: '',
@@ -613,8 +576,8 @@ class ServerElement extends HTMLElement {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
         const data = {
-            date: str[1],
-            time: str[2],
+            date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
+            time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
             event: `${this.deckInstrument.value == "Choose instrument..." ? '$' : this.deckInstrument.value} off deck`,
             comment: 'OP',
             lineName: '',
@@ -670,7 +633,7 @@ class ServerElement extends HTMLElement {
     async appendMessageToXlsxPoleUp(message) {
         const str = message.split(',');
         const pathXLSX = path.join(this.getFilePath())
-        console.log(str[1]);
+        // console.log(str[1]);
         const data = {
             date: str[1]?.trim() ?? this.getUTCDateWithoutTime(),
             time: str[2]?.trim() ?? this.getUTCTimeWithoutDate(),
@@ -684,7 +647,7 @@ class ServerElement extends HTMLElement {
             sssNorth: Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8]),
         };
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async() => {
+        await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
             let worksheet = workbook.getWorksheet('Survey_LOG');
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
