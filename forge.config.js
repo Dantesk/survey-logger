@@ -17,7 +17,7 @@ module.exports = {
         signWithParams: '',
         setupIcon: './assets/icon.ico',
         // exe: 'Survey Logger.exe',
-        iconUrl: 'https://raw.githubusercontent.com/Dantesk/survey-logger/main/icon.ico',
+        iconUrl: 'https://raw.githubusercontent.com/Dantesk/survey-logger/main/assets/icon.ico',
         // setupExe:"Survey Logger Setup.exe"
       }
     },
