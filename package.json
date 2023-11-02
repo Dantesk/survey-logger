@@ -4,7 +4,7 @@
   "description": "A simple app to create UDP servers to receive datagrams from Qinsy and save to exceljs",
   "main": "index.js",
   "scripts": {
-    "pack": "electron-packager . --overwrite --icon=./icon",
+    "pack": "electron-packager . --overwrite --icon=./assets/icon",
     "build": "electron-forge make",
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",

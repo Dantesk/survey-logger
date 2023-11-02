@@ -3,7 +3,7 @@ require('dotenv').config();
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: './icon', // no file extension required
+    icon: './assets/icon', // no file extension required
   },
   rebuildConfig: {},
   makers: [
@@ -15,7 +15,7 @@ module.exports = {
         certificateFile: '',
         certificatePassword: '',
         signWithParams: '',
-        setupIcon: './icon.ico',
+        setupIcon: './assets/icon.ico',
         // exe: 'Survey Logger.exe',
         iconUrl: 'https://raw.githubusercontent.com/Dantesk/survey-logger/main/icon.ico',
         // setupExe:"Survey Logger Setup.exe"

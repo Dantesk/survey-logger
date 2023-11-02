@@ -51,6 +51,7 @@ log.info('App starting...');
 
 function createWindow() {
   const win = new BrowserWindow({
+    icon: path.join(__dirname, 'assets', 'icon.png'), // Imposta l'icona della finestra
     width: 517,
     height: 530,
     minWidth: 317, // Imposta la larghezza minima della finestra a 317 pixel
