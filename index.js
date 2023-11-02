@@ -56,8 +56,8 @@ function createWindow() {
     height: 530,
     minWidth: 317, // Imposta la larghezza minima della finestra a 317 pixel
     minHeight: 330, // Imposta l'altezza minima della finestra a 330 pixel
-    // maxWidth: 517, // Imposta la larghezza minima della finestra a 517 pixel
-    // minHeight: 530, // Imposta l'altezza minima della finestra a 530 pixel
+    maxWidth: 517, // Imposta la larghezza minima della finestra a 517 pixel
+    minHeight: 530, // Imposta l'altezza minima della finestra a 530 pixel
     resizable: true,
     maximizable: true,
     webPreferences: {
@@ -70,8 +70,7 @@ function createWindow() {
   })
   win.loadFile(path.join(__dirname, 'index.html'));
   win.setMinimumSize(317, 330); // Imposta le dimensioni minime della finestra a 317x330 pixel
-  win.webContents.openDevTools()
-
+  // win.webContents.openDevTools()
 }
 
 ipcMain.handle('dark-mode:toggle', () => {
