@@ -874,7 +874,7 @@ class ServerElement extends HTMLElement {
         const hh = now.getUTCHours();
         const mm = now.getUTCMinutes();
         const ss = now.getUTCSeconds();
-        const time = `${hh}:${mm}:${ss}`;
+        const time = `${hh < 10 ? '0' + hh : hh}:${mm < 10 ? '0' + mm : mm}:${ss < 10 ? '0' + ss : ss}`;
         return time;
     }
 }
