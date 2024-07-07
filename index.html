@@ -48,6 +48,8 @@
                     <div class="flex-50 text-end">
                         <button type="button" class="btn rounded-pill btn-sm btn-outline-success" data-bs-toggle="modal"
                             data-bs-target="#server-modal">Add Server</button>
+                        <button type="button" class="btn rounded-pill btn-sm btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#server-settings">Settings</button>
                     </div>
                 </div>
                 <div id="servers"></div>
@@ -131,6 +133,107 @@
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" data-backdrop="static" id="server-settings">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="doc-index">
+                            <button class="nav-link active" id="index-fields" data-bs-toggle="tab"
+                                data-bs-target="#index" type="button" role="tab" aria-controls="index-fields"
+                                aria-selected="false">Index Fields</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="triggers-tab" data-bs-toggle="tab"
+                                data-bs-target="#triggers" type="button" role="tab" aria-controls="triggers"
+                                aria-selected="true">Triggers</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="new-buttons-tab" data-bs-toggle="tab"
+                                data-bs-target="#new-buttons" type="button" role="tab" aria-controls="new-buttons"
+                                aria-selected="false">New Buttons</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="index" role="tabpanel" aria-labelledby="index-fields-tab">
+                            <form id="settings-form-index-fields">
+                                <div class="d-grid gap-2 mb-2 mt-3">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">Date</span>
+                                        <input type="number" name="data-index-field" id="data-index-field" aria-label="data-index-field" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 mb-2">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">Time</span>
+                                        <input type="number" name="time-index-field" id="time-index-field" aria-label="time-index-field" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 mb-2">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-none">Line Name</span>
+                                        <input type="number" name="linename-index-field" id="linename-index-field" aria-label="linename-index-field" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 mb-2">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-none">DB Name</span>
+                                        <input type="number" name="dbname-index-field" id="dbname-index-field" aria-label="dbname-index-field" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 mb-2">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-none">Vessel Easting</span>
+                                        <input type="number" name="vsest-index-field" id="vsest-index-field" aria-label="vsest-index-field" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 mb-2">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-none">Vessel Northing</span>
+                                        <input type="number" name="vsnort-index-field" id="vsnort-index-field" aria-label="vsnort-index-field" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 mb-2">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-none">SSS Easting</span>
+                                        <input type="number" name="ssest-index-field" id="ssest-index-field" aria-label="ssest-index-field" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 mb-2">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text border-none">SSS Northing</span>
+                                        <input type="number" name="ssnort-index-field" id="ssnort-index-field" aria-label="ssnort-index-field" class="form-control">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="triggers" role="tabpanel" aria-labelledby="triggers-tab">
+                            <form id="settings-form-trigger">
+                                <div class="">
+                                    <h1>Triggers</h1>
+                                </div>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="new-buttons" role="tabpanel" aria-labelledby="new-buttons-tab">
+                            <form id="settings-form-buttons">
+                                <div class="">
+                                    <h1>New Buttons</h1>
+                                </div>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

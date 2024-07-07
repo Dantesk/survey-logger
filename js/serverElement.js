@@ -56,6 +56,16 @@ class ServerElement extends HTMLElement {
          * File path input
          */
         this.filePath = null;
+
+        /**
+         * Fields
+         */
+        this.fields = null;
+
+        /**
+         * Data
+         */
+        this.data = Object;
     }
 
     /**
@@ -82,6 +92,13 @@ class ServerElement extends HTMLElement {
     }
 
     /**
+     * Set fieldsIndex
+     */
+    setFields(fields){
+        this.fieldsIndex = fields;
+    }
+
+    /**
      * Append the template.
      * Capture elements.
      * Attach handlers
@@ -92,7 +109,7 @@ class ServerElement extends HTMLElement {
         const node = template.content.cloneNode(true);
         this.appendChild(node);
 
-        // Capture elements
+        // Capture elements buttons
         this.name = this.querySelector('[data-name="id"]');
         this.messages = this.querySelector('[data-name="messages"]');
         this.clear = this.querySelector('[name="clear"]');
@@ -113,6 +130,9 @@ class ServerElement extends HTMLElement {
         this.event = this.querySelector('[name="event"]');
         this.comment = this.querySelector('[name="comment"]');
         this.writeGeneric = this.querySelector('[name="writeGeneric"]');
+
+        // Capture elements inputs settings
+
 
         // On click emit an event to delete the server
         this.delete.addEventListener('click', (event) => {
@@ -175,6 +195,17 @@ class ServerElement extends HTMLElement {
             this.messages.innerHTML = '';
         });
     }
+
+    /**
+     * Create data dynamic from with settings parameters
+     * @param {String} messagge
+     * @param {fields} fieldsIndex
+     * @param {Object}
+     */
+    createObjectFromSettings(message){
+        const str = message.split(',').map(s => s.trim());
+    }
+
 
     /**
      * Append a message to the message output.
@@ -269,10 +300,10 @@ class ServerElement extends HTMLElement {
             comment: 'OP',
             lineName: str[3],
             dbName: str[4],
-            vesselEasting: Number.isNaN(Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5])) ? '' : Number.isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
-            vesselNorthing: Number.isNaN(Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6])) == 0 ? '' : Number.isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
-            sssEsting: Number.isNaN(Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7])) ? '' : Number.isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
-            sssNorth: Number.isNaN(Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])) ? '' : Number.isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])
+            vesselEasting: isNaN(parseFloat(str[5])) ? '' : parseFloat(str[5]),
+            vesselNorthing: isNaN(parseFloat(str[6])) ? '' : parseFloat(str[6]),
+            sssEsting: isNaN(parseFloat(str[7])) ? '' : parseFloat(str[7]),
+            sssNorth: isNaN(parseFloat(str[8])) ? '' : parseFloat(str[8])
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
