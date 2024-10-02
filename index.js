@@ -7,6 +7,8 @@ const NOTIFICATION_TITLE = 'Survey Logger Update';
 const CHECK_UPDATE = 'Checking for updates...';
 const NO_UPDATE = 'No update available';
 let LIMIT_NOTIFICATION = false
+let updateChecked = false;
+
 
 function showNotification (info) {
   if(!LIMIT_NOTIFICATION){
@@ -134,6 +136,7 @@ app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
+    app.applicationSupportsSecureRestorableState = () => true;
     app.quit()
   }
 });
@@ -175,8 +178,16 @@ autoUpdater.on('update-available', () => {
 });
 
 autoUpdater.on('update-not-available', (info) => {
-  showNotification(info);
-})
+  log.info('Update not available.');
+  if (!updateChecked) {
+    dialog.showMessageBox({
+      type: 'info',
+      title: 'No Updates',
+      message: 'Current version is up-to-date.'
+    });
+    updateChecked = true;
+  }
+});
 
 autoUpdater.on('error', (error) => {
   const options = {
@@ -224,5 +235,13 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 
 // Check for updates when the app is ready
 app.on('ready', function () {
-  autoUpdater.checkForUpdates();
+  if (!updateChecked) {
+    autoUpdater.checkForUpdates();
+    updateChecked = true;
+  }
+});
+
+// Secure coding is not enabled for restorable state!
+app.on('ready', () => {
+  app.applicationSupportsSecureRestorableState = () => true;
 });
