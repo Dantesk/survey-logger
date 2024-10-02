@@ -249,7 +249,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
@@ -307,10 +307,10 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = await workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
-                // Se il foglio di lavoro Survey_LOG non esiste, crealo
-                workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
+                // Se non ci sono fogli di lavoro, creane uno
+                worksheet = workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
             }
             worksheet.columns = [
                 { header: 'Date', key: 'date' },
@@ -365,7 +365,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = await workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
@@ -504,7 +504,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
@@ -562,7 +562,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
@@ -620,7 +620,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
@@ -679,7 +679,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
@@ -737,7 +737,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
@@ -795,7 +795,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
@@ -854,7 +854,7 @@ class ServerElement extends HTMLElement {
         };
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.readFile(pathXLSX, { useFileSystem: true }).then(async () => {
-            let worksheet = workbook.getWorksheet('Survey_LOG');
+            let worksheet = workbook.worksheets[0];
             if (!worksheet) {
                 // Se il foglio di lavoro Survey_LOG non esiste, crealo
                 await workbook.addWorksheet('Survey_LOG', { headerFooter: { firstHeader: 'Survey_LOG' } });
